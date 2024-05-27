@@ -1,20 +1,43 @@
 package ru.example.mvc.dao;
 
+import org.postgresql.Driver;
 import org.springframework.stereotype.Component;
 import ru.example.mvc.models.Person;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 @Component
 public class PersonDao {
-
     public static int PEOPLE_COUNT;
-    List<Person> personList;
+
+//    private static final String URL = "jdbc:postgresql://localhost:5432/alishev_db";
+//    private static final String USERNAME = "postgres";
+//    private static final String PASSWORD = "Achinsk1991";
+//
+//    private static Connection connection;
+//
+//    {
+//        try {
+//            Class.forName("org.postgresql.Driver");
+//        } catch (ClassNotFoundException e) {
+//            e.printStackTrace();
+//        }
+//
+//        try {
+//            connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+//        } catch (SQLException e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
+
+    private List<Person> personList;
 
     {
         personList = new ArrayList<>();
-
         personList.add(new Person(++PEOPLE_COUNT, "Artem", 32, "ark@gmail.com"));
         personList.add(new Person(++PEOPLE_COUNT, "Tanya", 30, "deg@gmail.com"));
         personList.add(new Person(++PEOPLE_COUNT, "Pol", 29, "pol@gmail.com"));
