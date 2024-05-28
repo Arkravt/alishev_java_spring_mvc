@@ -6,23 +6,26 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import ru.example.mvc.dao.PersonDao;
+import ru.example.mvc.dao.PersonDao_JDBC_API;
+import ru.example.mvc.dao.PersonDao_JdbcTemplate;
 import ru.example.mvc.models.Person;
 
 @Controller
 @RequestMapping("/people")
 public class PeopleController {
 
-    private final PersonDao personDao;
+    //private final PersonDao_JDBC_API personDao;
+    private final PersonDao_JdbcTemplate personDao;
 
     @Autowired
-    public PeopleController(PersonDao personDao) {
+    //public PeopleController(PersonDao_JDBC_API personDao) {
+    public PeopleController(PersonDao_JdbcTemplate personDao) {
         this.personDao = personDao;
     }
 
     @GetMapping()
     public String index(Model model) {
-        model.addAttribute("people", personDao.allPeople());
+        model.addAttribute("people", personDao.index());
         return "people/index";
     }
 
