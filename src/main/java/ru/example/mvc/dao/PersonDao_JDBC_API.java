@@ -85,7 +85,7 @@ public class PersonDao_JDBC_API {
     public void save(Person person) {
         try {
             PreparedStatement preparedStatement =
-                    connection.prepareStatement("INSERT INTO Person VALUES (1, ?, ?, ?)");
+                    connection.prepareStatement("INSERT INTO Person(name, age, email) VALUES (?, ?, ?)");
 
             preparedStatement.setString(1, person.getName());
             preparedStatement.setInt(2, person.getAge());
