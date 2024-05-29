@@ -1,4 +1,4 @@
-src\main\resources\database.properties
+/src\main\resources\database.properties
 target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
