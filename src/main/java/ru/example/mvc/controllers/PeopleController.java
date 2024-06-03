@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.example.mvc.dao.PersonDao_JDBC_API;
 import ru.example.mvc.dao.PersonDao_JdbcTemplate;
 import ru.example.mvc.models.Person;
+import ru.example.mvc.util.PersonValidator;
 
 @Controller
 @RequestMapping("/people")
@@ -16,11 +17,13 @@ public class PeopleController {
 
     //private final PersonDao_JDBC_API personDao;
     private final PersonDao_JdbcTemplate personDao;
+    private final PersonValidator personValidator;
 
     @Autowired
     //public PeopleController(PersonDao_JDBC_API personDao) {
-    public PeopleController(PersonDao_JdbcTemplate personDao) {
+    public PeopleController(PersonDao_JdbcTemplate personDao, PersonValidator personValidator) {
         this.personDao = personDao;
+        this.personValidator = personValidator;
     }
 
     @GetMapping()
@@ -45,6 +48,9 @@ public class PeopleController {
     @PostMapping()
     public String create(@ModelAttribute("person") @Valid Person person,
                          BindingResult bindingResult) {
+
+        personValidator.validate(person, bindingResult);
+
         if (bindingResult.hasErrors())
             return "people/new";
 
@@ -62,6 +68,9 @@ public class PeopleController {
     public String update(@PathVariable("id") int id,
                          @ModelAttribute("person") @Valid Person person,
                          BindingResult bindingResult) {
+
+        personValidator.validate(person, bindingResult);
+
         if (bindingResult.hasErrors())
             return "people/edit";
 

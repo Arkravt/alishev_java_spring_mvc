@@ -19,9 +19,11 @@
     <label for="email">Enter email:</label>
     <input id="email" type="text" th:field="*{email}">
     <div style="color:red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email error</div>
-
     <br>
-
+    <label for="address">Enter address:</label>
+    <input id="address" type="text" th:field="*{address}">
+    <div style="color:red" th:if="${#fields.hasErrors('address')}" th:errors="*{address}">address error</div>
+    <br>
     <input type="submit" value="Add person"/>
 </form>
 
